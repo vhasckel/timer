@@ -1,10 +1,10 @@
 # Timer - Countdown
 
-### ⚠️ status - developing
+### ⚠️ Status - developing
 
 Projeto para treinar desenvolvimento com JavaScript puro.
 
-### tecnologias usadas
+### Tecnologias usadas
 - JavaScript
 - HTML
 - CSS
