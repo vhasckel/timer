@@ -1,5 +1,6 @@
 const btnStart = document.getElementById("btn_start");
 const btnCancel = document.getElementById("btn_cancel");
+const btnPause = document.getElementById("btn_pause");
 const getHour = document.getElementById("hour");
 const getMinute = document.getElementById("minute");
 const getSecond = document.getElementById("second");
@@ -17,28 +18,25 @@ btnStart.addEventListener("click", () => {
   updateCountDown(duration);
 });
 
+const getTimeUnit = (unit) => (unit < 10 ? "0" + unit : unit);
+
+const insertCountdownValues = ({ hours, minutes, seconds }) => {
+  outHours.textContent = getTimeUnit(hours);
+  outMinutes.textContent = getTimeUnit(minutes);
+  outSeconds.textContent = getTimeUnit(seconds);
+};
+
 const updateCountDown = (duration) => {
   let timer = duration;
-  let hours = "";
-  let minutes = "";
-  let seconds = "";
 
   let interval = setInterval(() => {
     hours = Math.floor(timer / 60 / 60);
     minutes = Math.floor(timer / 60 - hours * 60);
     seconds = Math.floor(timer % 60);
-
     console.log(timer);
 
-    hours = hours < 10 ? "0" + hours : hours;
-    minutes = minutes < 10 ? "0" + minutes : minutes;
-    seconds = seconds < 10 ? "0" + seconds : seconds;
-
-    outHours.textContent = `${hours}:`;
-    outMinutes.textContent = `${minutes}:`;
-    outSeconds.textContent = `${seconds}`;
-
     timer -= 1;
+    insertCountdownValues({ hours, minutes, seconds });
 
     if (timer < 0) {
       clearInterval(interval);
